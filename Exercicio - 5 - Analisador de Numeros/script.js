@@ -3,6 +3,7 @@ var Numeros = [];
 function Add(){
     let Num = document.getElementById("txtNumber");
     let Retorno = document.getElementById("retorno");
+    let Resultado = document.getElementById("resultado");
 
     if(Num.value.length == 0){
         window.alert("[Erro]. Por favor, digite um número!");
@@ -15,14 +16,19 @@ function Add(){
             window.alert("[Erro]. Por favor, digite um número ÚNICO, que NÃO esteja na LISTA!");
         }else{
             Numeros.push(Num);
-            Numeros.sort();
+            Numeros.sort(function(a, b){return a - b}); //precisa disso, pois o metodo sort() da problema com numeros
     
-            
+            Resultado.innerHTML = '';
             Retorno.value += `O número [${Num}] foi adicionado à lista.\n`
+            Retorno.value += `Lista: [${Numeros}] \n`
         }
       
 
     }
+
+    document.getElementById("txtNumber").value = '';
+    document.getElementById("txtNumber").focus();
+
 }
 
 
@@ -32,6 +38,8 @@ function Finalizar(){
     window.alert("[Erro]. É necessário pelo menos [1] elemento na lista para analisá-la.");
 
    }else{
+
+   
     let Resultado = document.getElementById("resultado");
 
     Resultado.innerHTML = `<p>Ao todo, existem ${Numeros.length} elementos cadastrados</p>`
